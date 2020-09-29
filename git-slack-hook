@@ -281,6 +281,11 @@ function notify() {
     exit 1
   fi
 
+  if [ -z "$channel" ]; then
+    # Assume we don't want a notification. Exit to prevent it firing and defaulting to the Slack hook's default channel.
+    exit
+  fi
+
   payload="{${msg}"
 
   if [ -n "$channel" ]; then
